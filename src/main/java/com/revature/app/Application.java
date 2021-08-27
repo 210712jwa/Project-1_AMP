@@ -3,6 +3,8 @@ package com.revature.app;
 import org.mariadb.jdbc.internal.logging.Logger;
 import org.mariadb.jdbc.internal.logging.LoggerFactory;
 
+import com.revature.controller.AdminController;
+
 //import java.sql.Connection;
 
 import com.revature.controller.Controller;
@@ -25,7 +27,7 @@ public class Application {
 			config.enableCorsForAllOrigins();
 		});
 			
-		mapControllers(new LoginController(), new ExceptionController(), new ReimbursementController());
+		mapControllers(new LoginController(), new ExceptionController(), new ReimbursementController(), new AdminController());
 		
 		app.start(5000);
 		

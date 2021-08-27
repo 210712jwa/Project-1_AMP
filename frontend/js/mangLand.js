@@ -1,5 +1,6 @@
 let log_out = document.getElementById("logoutBtn");
-let newReimb = document.getElementById("addReimbButton");
+// let newReimb = document.getElementById("addReimbButton");
+// let statChange = document.getElementById("resolver");
 
 function logoutUser(event) {
     fetch('http://localhost:5000/logout', {
@@ -16,27 +17,27 @@ function logoutUser(event) {
     });
 }
 
-function onLoad(event) {
-    fetch('http://localhost:5000/loggedInUser', {
-        'credentials' : 'include',
-        'method' : 'GET'
-    }).then((response) => {
-        if (response.status === 401) {
-            window.location.href = '/index.html';
-        } else if (response.status === 200) {
-                return response.json();
-            }
-    }).then((user) => {
-        return fetch(`http://localhost:5000/User/${user.userID}/Reimbursement`, {
-            'method' : 'GET',
-            'credentials' : 'include'
-    });
-    }).then((response) => {
-        return response.json();
-    }).then((reimbursements) => {
-        populateReimbursements(reimbursements);
-    })
-}
+// function onLoad(event) {
+//     fetch('http://localhost:5000/loggedInUser', {
+//         'credentials' : 'include',
+//         'method' : 'GET'
+//     }).then((response) => {
+//         if (response.status === 401) {
+//             window.location.href = '/index.html';
+//         } else if (response.status === 200) {
+//                 return response.json();
+//             }
+//     }).then((user) => {
+//         return fetch(`http://localhost:5000/Reimbursement/${statChange}`, {
+//             'method' : 'GET',
+//             'credentials' : 'include'
+//     });
+//     }).then((response) => {
+//         return response.json();
+//     }).then((reimbursements) => {
+//         populateReimbursements(reimbursements);
+//     })
+// }
 
 function populateReimbursements(reimbArray) {
     let tbody = document.querySelector('#reimbursements tbody');
@@ -63,11 +64,11 @@ function populateReimbursements(reimbArray) {
         let reimbAuthorTd = document.createElement('td');
         reimbAuthorTd.innerHTML = reimb.author.username;
 
-        let reimbStatusTd = document.createElement('td');
-        reimbStatusTd.innerHTML =  1; //reimb.status.status;
+        // let reimbStatusTd = document.createElement('td');
+        // reimbStatusTd.innerHTML = 1 //reimb.status.status;
 
-        let reimbTypeTd = document.createElement('td');
-        reimbTypeTd.innerHTML = 1; //reimb.typeID.type;
+        // let reimbTypeTd = document.createElement('td');
+        // reimbTypeTd.innerHTML = 1 //reimb.typeID.type;
 
         let reimbDescTd = document.createElement('td');
         reimbDescTd.innerHTML = reimb.reimbDesc;
@@ -79,13 +80,13 @@ function populateReimbursements(reimbArray) {
         reimbResolveTimeTd.innerHTML = reimb.resolveTime;
 
         tr.appendChild(reimbIdTd);
-        tr.appendChild(reimbAmountTd);
-        tr.appendChild(reimbAuthorTd);
-        tr.appendChild(reimbStatusTd);
-        tr.appendChild(reimbTypeTd);
-        tr.appendChild(reimbDescTd);
-        tr.appendChild(reimbSubTimeTd);
-        tr.appendChild(reimbResolveTimeTd);
+        // tr.appendChild(reimbAmountTd);
+        // tr.appendChild(reimbAuthorTd);
+        // tr.appendChild(reimbStatusTd);
+        // tr.appendChild(reimbTypeTd);
+        // tr.appendChild(reimbDescTd);
+        // tr.appendChild(reimbSubTimeTd);
+        // tr.appendChild(reimbResolveTimeTd);
 
         tbody.appendChild(tr);
     }
@@ -95,6 +96,11 @@ function toNewReimbPage(event) {
     window.location.href = '/addReimbursement.html';
 }
 
-window.addEventListener('load', onLoad);
+function nothing(event) {
+
+}
+
+// window.addEventListener('load', onLoad);
 log_out.addEventListener("click", logoutUser);
-newReimb.addEventListener('click', toNewReimbPage)
+// statChange.addEventListener("click", nothing);
+// newReimb.addEventListener('click', toNewReimbPage);

@@ -24,11 +24,19 @@ function clickLogin(event) {
         body: JSON.stringify(userInfo)
     }).then((response) => {
         if (response.status === 200) {
-            window.location.href = '/employeeMenu.html';
+            return response.json();
         } else if (response.status === 400) {
-            console.log("This shit invalid as fuck boy.")
+            console.log("Invalid Login")
            invalidLogin();
         }
+    }).then((user) => {
+        if (user.userRole.roleID === 1) {
+            window.location.href = '/managerMenu.html'
+        }
+        else {
+            window.location.href = '/employeeMenu.html';
+        }   
+        
     })
 };
 
@@ -48,10 +56,10 @@ function checkIfCurrentlyLoggedIn(event) {
         'method' : 'GET'
     }).then((response) => {
         if (response.status === 200) {
-        window.location.href = '/employeeMenu.html';
+            window.location.href = '/employeeMenu.html';
         }
     });
 }
 
-button.addEventListener("click", clickLogin);
+button.addEventListener('click', clickLogin);
 window.addEventListener('load', checkIfCurrentlyLoggedIn);

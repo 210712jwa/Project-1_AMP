@@ -21,7 +21,7 @@ public class LoginController implements Controller {
 	private Handler loginHandler = (ctx) -> {
 		UserLoginDTO userLoginDTO = ctx.bodyAsClass(UserLoginDTO.class);
 		
-		System.out.println(userLoginDTO.toString());
+//		System.out.println(userLoginDTO.toString());
 		
 		User user = loginService.loginInfo(userLoginDTO.getUsername(), userLoginDTO.getPassword());
 		

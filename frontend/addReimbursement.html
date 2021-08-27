@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Reimbursement</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <!-- Custom CSS-->
+    <link href="styles.css" rel="stylesheet"></head>
+<body>
+    <h1>
+        Request Reimbursment
+    </h1>
+
+    <div>
+        <a href="employeeMenu.html">Return to your landing page</a>
+    </div>
+
+    <div>
+        <form id="addReimbForm">
+            <div>
+                Amount:<input id="reimbAmount">
+            </div>
+
+            <div class="input-group mb-3">
+                <label for="type">Reimbursement Type:</label>
+                <select id="type">
+                  <option selected value="0">Choose Type</option>
+                  <option value="1">Lodging</option>
+                  <option value="2">Food</option>
+                  <option value="3">Travel</option>
+                  <option value="4">Other</option>
+                </select>
+              </div>
+
+            <div>
+                Description:<input id="description" style="width: 1000px; height: 100px;">
+            </div>
+
+            <button type="button" class="btn btn-primary" id="reimbSubmit">Submit Request</button>
+            
+        </form>
+    </div>
+
+    <script src="js/addReimb.js"></script>
+</body>
+</html>

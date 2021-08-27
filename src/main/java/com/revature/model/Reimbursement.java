@@ -33,11 +33,14 @@ public class Reimbursement {
 	
 	@ManyToOne
 	@JoinColumn (name = "status_id", nullable = false)
-	private ReimbStatus statusID; //meant to join with the status table; should be an objecct
+	private ReimbStatus status; //meant to join with the status table; should be an objecct
 	
 	@ManyToOne
 	@JoinColumn (name = "type_id", nullable = false)
 	private ReimbType typeID; // meant to join with the type table; should be an object
+	
+	@Column
+	private String reimbDesc;
 	
 	@Column
 	private Timestamp submitTime;
@@ -91,11 +94,11 @@ public class Reimbursement {
 	}
 
 	public ReimbStatus getStatusID() {
-		return statusID;
+		return status;
 	}
 
 	public void setStatusID(ReimbStatus statusID) {
-		this.statusID = statusID;
+		this.status = statusID;
 	}
 
 	public ReimbType getTypeID() {
@@ -107,6 +110,14 @@ public class Reimbursement {
 	}
 	
 	
+
+	public String getReimbDesc() {
+		return reimbDesc;
+	}
+
+	public void setReimbDesc(String reimbDesc) {
+		this.reimbDesc = reimbDesc;
+	}
 
 	public Timestamp getSubmitTime() {
 		return submitTime;
@@ -134,7 +145,8 @@ public class Reimbursement {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(author, receipt, reimbAmount, reimbID, resolveTime, resolver, statusID, submitTime, typeID);
+		return Objects.hash(author, receipt, reimbAmount, reimbDesc, reimbID, resolveTime, resolver, status,
+				submitTime, typeID);
 	}
 
 	@Override
@@ -148,16 +160,18 @@ public class Reimbursement {
 		Reimbursement other = (Reimbursement) obj;
 		return Objects.equals(author, other.author) && Objects.equals(receipt, other.receipt)
 				&& Double.doubleToLongBits(reimbAmount) == Double.doubleToLongBits(other.reimbAmount)
-				&& reimbID == other.reimbID && Objects.equals(resolveTime, other.resolveTime)
-				&& Objects.equals(resolver, other.resolver) && Objects.equals(statusID, other.statusID)
-				&& Objects.equals(submitTime, other.submitTime) && Objects.equals(typeID, other.typeID);
+				&& Objects.equals(reimbDesc, other.reimbDesc) && reimbID == other.reimbID
+				&& Objects.equals(resolveTime, other.resolveTime) && Objects.equals(resolver, other.resolver)
+				&& Objects.equals(status, other.status) && Objects.equals(submitTime, other.submitTime)
+				&& Objects.equals(typeID, other.typeID);
 	}
 
 	@Override
 	public String toString() {
 		return "Reimbursement [reimbID=" + reimbID + ", reimbAmount=" + reimbAmount + ", author=" + author
-				+ ", resolver=" + resolver + ", statusID=" + statusID + ", typeID=" + typeID + ", submitTime="
-				+ submitTime + ", resolveTime=" + resolveTime + ", receipt=" + receipt + "]";
+				+ ", resolver=" + resolver + ", statusID=" + status + ", typeID=" + typeID + ", reimbDesc="
+				+ reimbDesc + ", submitTime=" + submitTime + ", resolveTime=" + resolveTime + ", receipt=" + receipt
+				+ "]";
 	}
 	
 }

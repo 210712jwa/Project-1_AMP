@@ -4,7 +4,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
-import com.revature.dto.ReimbursementDTO;
+import com.revature.dto.AddReimbursementDTO;
 import com.revature.model.ReimbStatus;
 import com.revature.model.ReimbType;
 import com.revature.model.Reimbursement;
@@ -25,8 +25,8 @@ public class PopulateData {
 		
 		UserRole manager = new UserRole("manager");
 		UserRole employee = new UserRole("employee");
-		session.persist(employee);
 		session.persist(manager);
+		session.persist(employee);
 		
 		ReimbStatus pending = new ReimbStatus("pending");
 		ReimbStatus approved = new ReimbStatus("approved");
@@ -57,6 +57,7 @@ public class PopulateData {
 		User employee1 = new User("employee1@yuh.com", "employee1", "greasemonkey24", "Ky", "Kiske");
 		User employee2 = new User("employee2@yuh.com", "employee2", "glockinmyrari12", "Millia", "Rage");
 		User employee3 = new User("employee3@yuh.com", "employee3", "yaters32", "Axl", "Low");
+		User admin = new User("adminMan@yuh.com", "admin", "wuhtusay15", "Leo", "Whitefang");
 		
 		UserRole manager = (UserRole) session.createQuery("FROM UserRole ur WHERE ur.role = 'manager'").getSingleResult();
 		UserRole employee = (UserRole) session.createQuery("FROM UserRole ur WHERE ur.role = 'employee'").getSingleResult();
@@ -64,10 +65,12 @@ public class PopulateData {
 		employee1.setUserRole(employee);
 		employee2.setUserRole(employee);
 		employee3.setUserRole(employee);
+		admin.setUserRole(manager);
 		
 		session.persist(employee1);
 		session.persist(employee2);
 		session.persist(employee3);
+		session.persist(admin);
 		
 		tx.commit();
 		session.close();
@@ -81,6 +84,7 @@ public class PopulateData {
 		User employee1 = (User) session.createQuery("FROM User WHERE username = 'employee1'").getSingleResult();
 		User employee2 = (User) session.createQuery("FROM User WHERE username = 'employee2'").getSingleResult();
 		User employee3 = (User) session.createQuery("FROM User WHERE username = 'employee3'").getSingleResult();
+		User admin = (User) session.createQuery("FROM User WHERE username = 'admin'").getSingleResult();
 		
 		ReimbStatus pending = (ReimbStatus) session.createQuery("FROM ReimbStatus WHERE status = 'pending'").getSingleResult();
 		
